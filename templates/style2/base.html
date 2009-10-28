@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Second Labour Archive</title>
+    <link rel="stylesheet" type="text/css" href="/media/style2/auth.css" />
+    <style type="text/css">
+      {% block style %}
+      {% endblock %}
+    </style>
+    <script type="text/javascript" src="/media/jquery.js"></script>
+    <script type="text/javascript" src="/media/curvycorners.js"></script>
+    <script type="text/javascript" src="/media/jquery.flydom-min.js"></script>
+    {% block head %}
+    {% endblock %}
+    <script type="text/javascript">
+      {% block global_javascript %}
+      {% endblock %}
+      $(document).ready(function() { 
+        $("ul#menu>li>a[@href*={{ current_path }}]").addClass("active_button");
+        $("ul#menu>li>ul#submenu>li>a[@href={{ current_path }}]").addClass("active_sub_button");
+        $(".corner1").corner({
+          tl: { radius: 8 },
+          tr: { radius: 8 },
+          bl: { radius: 8 },
+          br: { radius: 8 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"] 
+        });
+        {% block javascript %}
+        {% endblock %}
+      });
+    </script>
+  </head>
+  <body>
+    <div style="display:none; text-align: center; margin: 8px; padding: 16px; font-size: 20px; color: #CC0000;"> 
+    </div> 
+    <div id="header" class="corner1">
+      <div id="header_searchbox">
+        <form action="/search/" method="get" accept-charset="utf-8">
+          <label for="header_searchbox_terms">Search:</label>
+          <input type="text" name="search_terms" size="18" maxlength="255" id="header_searchbox_terms" />
+          <select name="service" id="header_searchbox_service">
+            <option value="0" {% if not service %} selected="true" {% endif %}>Any</option>
+            {% for loop_service in services %}
+            <option value="{{ loop_service.id }}"
+              {% if service %}
+                {% ifequal service.id loop_service.id %}
+                  selected="true"
+                {% endifequal %}
+              {% endif %}
+              >{{ loop_service.name }}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" name="s" id="header_searchbox_submit" value="Go!" />
+        </form>
+      </div>
+      <img src="/media/hydra-2.png" id="header_sitelogo" alt="Site Logo" />
+      <h3 id="header_sitename">
+        The Second Labour Archive
+      </h3>
+    </div>
+
+    {% include "style2/menu.html" %}
+
+    <div id="content" class="corner1">
+        {% block content %}
+        {% endblock %}
+    </div>
+  </body>
+</html>

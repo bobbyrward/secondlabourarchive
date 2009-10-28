@@ -1,0 +1,18 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    Services
+  </h3>
+  <hr class="page_separator" />
+  <ul>
+    {% for service in services %}
+      <li>
+        <a href="/service/{{ service.id }}" title="{{ service.name }}">
+          {{ service.name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

@@ -1,0 +1,248 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+
+html, body {
+  height: 100%;
+  color: #536482;
+  font-size: 14px;
+  /*font-family: Verdana, Tahoma, Arial, sans-serif;*/
+  font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+  background: white;
+  /*background-color: #CADCEB;*/
+  background-color: white;
+}
+
+a:link  { 
+  color: #105289; 
+  text-decoration: none; 
+}
+
+a:visited { 
+  color: #105289; 
+  text-decoration: none; 
+}
+
+a:hover { 
+  color: #D31141; 
+  text-decoration: underline; 
+}
+
+a:active { 
+  color: #368AD2; 
+  text-decoration: none; 
+}
+
+body {
+}
+
+div#header {
+  height: 160px;
+  margin: 16px 16px 0 16px;
+  background: #12A3EB none repeat-x scroll 0pt 0pt;
+  background-image: url('/media/style2/bg_header.gif');
+  color: white;
+}
+
+h3#header_sitename {
+  float: left;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+div#header_searchbox {
+  text-align: right;
+  float: right;
+  margin-right: 32px;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  /*
+  width: 192px;
+  margin-top: 24px;
+  margin-right: -24px;
+  */
+  /*margin-right: 8px;*/
+}
+
+img#header_sitelogo {
+  float: left;
+  width: 120px;
+  height: 120px;
+  margin: 4px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+div#sidebar {
+  float: left;
+  width: 128px;
+  margin: 24px 16px 16px 16px;
+  padding: 2px 8px 2px 8px;
+  /*background-color: #ECECEC;*/
+  /*border: 1px solid black;*/
+  color: white;
+  background: #12A3EB none repeat-x scroll 0pt 0pt;
+  background-image: url('/media/style2/bg_header.gif');
+}
+
+ul#menu {
+  padding: 0;
+  color: white;
+  list-style: none;
+  margin: 0;
+}
+
+li.menu_button>a {
+  height: 16px;
+  width: 116px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #ECECEC;
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: left;
+  background-color: transparent;/*#ECECEC;*/
+}
+
+li.menu_button>a:hover {
+  color: white;
+  font-weight: bold;
+}
+
+a.active_button {
+  height: 16px;
+  width: 116px;
+  text-decoration: none
+  overflow: hidden;
+  color: black;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: left;
+  background-color: transparent;/*#ECECEC;*/
+}
+
+ul#submenu {
+  margin-left: 10px;
+  list-style: none;
+}
+
+li.menu_sub_button>a {
+  height: 16px;
+  width: 116px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #ECECEC;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: left;
+  background-color: transparent;/*#ECECEC;*/
+}
+
+li.menu_sub_button>a:hover {
+  color: white;
+  font-weight: bold;
+}
+
+a.active_sub_button {
+  height: 16px;
+  width: 116px;
+  text-decoration: none
+  overflow: hidden;
+  color: black;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: left;
+  background-color: transparent;/*#ECECEC;*/
+}
+
+div#content {
+  margin: 24px 16px 16px 172px;
+/*
+  background: #B1B1B1 none repeat-x scroll 0pt 0pt;
+  background-image: url('/media/style2/bg_list.gif');
+*/
+  background-color: #EEF5F9;
+  border: 2px solid #0076B1;
+  color: #536482;
+  padding:5px;
+}
+
+
+h3#page_title {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  background-color: transparent;
+  color: #536482;
+  margin: 8px;
+  margin-left: 0px;
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+
+div#content ul {
+  margin-left: 40px;
+}
+
+div.page_nav_bar {
+  float: right;
+  text-align: right;
+}
+
+hr.page_separator {
+  width: 100%;
+  margin: 0 0 16px 0;
+  color: #0076B1;
+}
+
+div.spacer {
+  clear: both;
+}
+
+table.link_table {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+img.thumbnail {
+  margin: 8px;
+}
+
+.error {
+  color: #D31141; 
+}
+
+table.search_results {
+  border: 2px solid #12A3EB;
+  width: 100%;
+  background-color: #12A3EB;
+  margin: 4px;
+}
+
+table.search_results thead td{
+  color: #ECECEC;
+  background-color: #12A3EB;
+  padding: 4px;
+}
+
+table.search_results tr {
+  color: #536482;
+  background-color: #EEF5F9;
+  padding: 4px;
+}
+
+table.search_results tr.search_row_odd {
+  background-color: #cce9f9;
+}
+
+table.search_results tr td {
+  padding: 4px;
+}

@@ -1,0 +1,26 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    Search
+  </h3>
+  <hr class="page_separator" />
+  <form method="get" action="" accept-charset="utf-8">
+    <input type="text" name="search_terms" id="search_terms" />
+    <select name="service" id="header_searchbox_service">
+      <option value="0" {% if not service %} selected="true" {% endif %}>Any</option>
+      {% for loop_service in services %}
+      <option value="{{ loop_service.id }}"
+        {% if service %}
+          {% ifequal service.id loop_service.id %}
+            selected="true"
+          {% endifequal %}
+        {% endif %}
+        >{{ loop_service.name }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" name="s" id="submit" value="Search" />
+  </form>
+{% endblock %}
+
+

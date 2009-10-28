@@ -1,0 +1,137 @@
+{% extends "style2/base.html" %}
+
+{% block style %}
+  .json_image_link {
+    border: none;
+  }
+{% endblock %}
+
+{% block global_javascript %}
+  this_release_id = {{ release.id }};
+
+  function add_release_link(id, name) {
+    $("#release_links").tplAppend({'pk': id, 'name': name}, function(){
+      return [
+        'tr', {}, [
+          'td', {}, this.name,
+          'td', {}, [
+            'img', {'src': '/media/del.png', 'class': 'json_image_link', 'link_id': this.pk, 'link_name': this.name}, []
+          ]
+        ]
+      ];
+    });
+  }
+
+  function add_search_result(id, name) {
+    $("#search_results").tplAppend({'pk': id, 'name': name}, function(){
+      return [
+        'tr', {}, [
+          'td', {}, this.name,
+          'td', {}, [
+            'img', {'src': '/media/add.png', 'class': 'json_image_link', 'link_id': this.pk, 'link_name': this.name}, []
+          ]
+        ]
+      ];
+    });
+  }
+
+{% endblock %}
+
+{% block javascript %}
+  $("#release_links").hide()
+  $("#release_throbber").show()
+
+  $.getJSON("/json/release/" + this_release_id + "/children/", function(data){
+    $("#release_links").show()
+    $("#release_throbber").hide()
+
+    $.each(data, function(i, item){
+      add_release_link(item.pk, item.fields.name);
+    });
+
+    $("#release_links").find("tr:odd").addClass("search_row_odd");
+
+    $("#release_links img").click(function(){
+      img = this;
+      $.getJSON("/json/release/" + this_release_id + "/remove/" + this.link_id + "/", function() {
+        $(img).parents('tr').hide();
+      });
+    });
+  });
+
+  $("#search_button").click(function() {
+    $("#search_results").hide()
+    $("#search_throbber").show()
+
+    $.getJSON("/json/release/" + this_release_id + "/search/", {"terms": $("#search_terms").val()}, function(data){
+      $("#search_results").show()
+      $("#search_throbber").hide()
+
+      $.each(data, function(i, item){
+        add_search_result(item.pk, item.fields.name);
+      });
+
+      $("#search_results").find("tr:odd").addClass("search_row_odd");
+
+      $("#search_results img").click(function(){
+        img = this;
+        $.getJSON("/json/release/" + this_release_id + "/add/" + this.link_id + "/", function() {
+          $(img).parents('tr').hide();
+          add_release_link(img.link_id, img.link_name);
+        });
+      });
+
+    });
+  });
+
+{% endblock %}
+
+{% block content %}
+  <div class="page_nav_bar" style="display: none;">
+  </div>
+  <h3 id="page_title">
+    {{ release.name }}
+  </h3>
+  <hr class="page_separator" />
+  <div id="release_throbber" style="text-align: center; display:none;">
+    <img src="/media/throbber.gif" alt="Loading..." style="margin-left: auto; margin-right: auto;" />
+  </div>
+  <table id="release_links" class="search_results corner">
+    <thead>
+      <tr>
+        <td>
+          Name
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <p>
+    <input type="text" id="search_terms" name="terms" value="{{ release.name }}" /> 
+    <input type="button" id="search_button" value="Search"/>
+  </p>
+  <div id="search_throbber" style="text-align: center; display:none;">
+    <img src="/media/throbber.gif" alt="Loading..." style="margin-left: auto; margin-right: auto;" />
+  </div>
+    <table id="search_results" class="search_results corner" style="display: none;">
+      <thead>
+        <tr>
+          <td>
+            <h4>Name</h4>
+          </td>
+          <td>
+            &nbsp;
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+{% endblock %}
+
+

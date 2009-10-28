@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Select a service:</h3>
+    <p>
+        <ul>
+            {% for service in services %}
+                <li>
+                    <a href="/service/{{service.id}}/">{{service.name}}</a><br />
+                </li>
+            {% endfor %}
+        </ul>
+    </p>
+
+{% endblock %}
+

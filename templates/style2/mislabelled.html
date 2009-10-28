@@ -1,0 +1,18 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    Mislabelled
+  </h3>
+  <hr class="page_separator" />
+  <table>
+    {% for ticket in tickets %}
+      <tr>
+        <td>Link</td>
+        <td><a href="/admin/archive/downloadlink/{{ ticket.link.id }}/">{{ ticket.link.name }}</a></td>
+        <td><a href="/admin/archive/troubleticket/{{ ticket.id }}/delete/">Delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+

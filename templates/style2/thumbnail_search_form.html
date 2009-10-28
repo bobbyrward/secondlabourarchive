@@ -1,0 +1,42 @@
+{% extends "style2/base.html" %}
+
+{% block javascript %}
+
+$("#thumb_search_ajax").click(function() {
+  $.getJSON("/json/thumbnailsearch/", {"terms": $("#thumb_search_terms").val()}, function(data) {
+    $("#thumb_search_results").empty();
+
+    if(data.length > 0) {
+      $.each(data, function(i, item) {
+        img = $("<img/>");
+        img.attr("src", "/media/" + item.fields.thumbnail);
+        img.attr("imgid", item.pk);
+        img.appendTo("#thumb_search_results");
+        img.click(function() {
+          alert($(this).attr("imgid"));
+        });
+      });
+    } else {
+      $("#thumb_search_results").text("No results found");
+    }
+  });
+});
+
+{% endblock %}
+
+{% block content %}
+  <form action="" method="get" accept-charset="utf-8">
+    <div class="page_nav_bar">
+    </div>
+    <h3 id="page_title">
+      Thumbnail Search
+    </h3>
+    <hr class="page_separator" />
+    <input type="text" name="terms" id="thumb_search_terms" />
+    <input type="button" name="search" id="thumb_search_ajax" value="search" />
+    <div id="thumb_search_results">
+    </div>
+  </form>
+{% endblock %}
+
+

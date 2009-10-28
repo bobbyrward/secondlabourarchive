@@ -1,0 +1,58 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <div class="page_nav_bar">
+    <strong>Showing results</strong> {{page.start_index}}-{{page.end_index}} <strong>of</strong> {{paginator.count}}
+    <br />
+    <strong>Terms:</strong>
+    {% for term in term_list %}
+      {{ term }}
+    {% endfor %}
+    <strong>Service:</strong>
+    {% if service %}
+      {{ service.name }}
+    {% else %}
+      Any
+    {% endif %}
+    {% if page.has_other_pages %}
+      {% if page.has_previous %}
+        <a style="font-weight: bold" href="/search/{{search_terms}}/{{page.previous_page_number}}/">Prev</a>
+      {% endif %}
+      {% if page.has_next %}
+        <a style="font-weight: bold" href="/search/{{search_terms}}/{{page.next_page_number}}/">Next</a>
+      {% endif %}
+    {% endif %}
+  </div>
+  <h3 id="page_title">
+    Search Results
+  </h3>
+  <hr class="page_separator" />
+  {% for link in page.object_list %}
+    {% include "link_short.html" %}
+  {% endfor %}
+  <div class="page_nav_bar">
+    <strong>Showing results</strong> {{page.start_index}}-{{page.end_index}} <strong>of</strong> {{paginator.count}}
+    <br />
+    <strong>Terms:</strong>
+    {% for term in term_list %}
+      {{ term }}
+    {% endfor %}
+    <strong>Service:</strong>
+    {% if service %}
+      {{ service.name }}
+    {% else %}
+      Any
+    {% endif %}
+    {% if page.has_other_pages %}
+      {% if page.has_previous %}
+        <a style="font-weight: bold" href="/search/{{search_terms}}/{{page.previous_page_number}}/">Prev</a>
+      {% endif %}
+      {% if page.has_next %}
+        <a style="font-weight: bold" href="/search/{{search_terms}}/{{page.next_page_number}}/">Next</a>
+      {% endif %}
+    {% endif %}
+  </div>
+  <div class="spacer"></div>
+
+{% endblock %}
+

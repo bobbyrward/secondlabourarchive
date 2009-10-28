@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+{% load admin_menu %}
+<html>
+  <head>
+    <title>Second Labour Archive</title>
+    <link rel="stylesheet" type="text/css" href="/media/auth.css" media="screen,projection" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+
+    <!--
+    <div id="user-box">
+      <form method="get" action="/search/" accept-charset="utf-8">
+        <input type="text" name="search_terms" id="search_terms" />
+        <input type="submit" name="s" id="submit" value="Search" />
+      </form>
+      Logged in as: {{ user.username }}<br />
+      <a href="/logout/">Log Out</a>
+    </div>
+    -->
+
+    <div id="page">
+      <div id="header">
+        <a href="/"> <h1>Second Labour Archive</h1> </a>
+        <!-- <h2><a href="http://www.developdaly.com">by: Develop Daly</a></h2> -->
+      </div>
+      <div id="topbar">
+        <form method="get" action="/search/" accept-charset="utf-8">
+        <p>
+          Search:
+            <input type="text" name="search_terms" size="40" maxlength="255" class="mtx_srch2_box" />
+            <select name="service">
+              <option value="0" {% if not service %} selected="true" {% endif %}>Any</option>
+              {% for loop_service in services %}
+              <option value="{{ loop_service.id }}"
+                {% if service %}
+                  {% ifequal service.id loop_service.id %}
+                    selected="true"
+                  {% endifequal %}
+                {% endif %}
+                >{{ loop_service.name }}</option>
+              {% endfor %}
+            </select>
+            <input type="submit" name="s" value="Go!" />
+        </p>
+        </form>
+      </div>
+      <div id="left">
+        <ul id="menu">
+          <li class="button">
+            {% archive_menu_button current_path "/" "Home" %}
+            <ul class="secondary">
+              <li class="secondary_button">
+                {% archive_menu_secondary_button current_path "/logout" "Logout" %}
+              </li>
+              <li class="secondary_button">
+                {% archive_menu_secondary_button current_path "/profile/" "Profile" %}
+              </li>
+            </ul>
+          </li>
+          <li class="button">
+            {% archive_menu_button current_path "/search/" "Search" %}
+          </li>
+          <li class="button">
+            {% archive_menu_button current_path "/service/" "Services" %}
+            <ul class="secondary">
+              {% for service in services %}
+                <li class="secondary_button">
+                  {% archive_menu_secondary_button current_path "/service/{{ service.id }}/" service.name %}
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="button">
+            {% archive_menu_button current_path "/contact/" "Contact" %}
+          </li>
+        </ul>
+        <div class="box">
+          <p>
+          Thanks to <a href="http://<removed>.com">Removed</a>!  Without them this site wouldn't be possible.
+          </p>
+        </div>
+        <div class="box">
+          <p>
+            Feel free to give suggestions on the <a href="/contact">Contact</a> form.
+          </p>
+        </div>
+      </div>
+      <div id="right">
+        <div id="content">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+      <div id="footer">
+        &copy; 2008 Bobby R. Ward &lt;<a href="mailto:bobbyrward@gmail.com">bobbyrward@gmail.com</a>&gt;
+      </div>
+    </div>
+  </body>
+</html>
+

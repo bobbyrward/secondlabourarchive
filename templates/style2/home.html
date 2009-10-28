@@ -1,0 +1,13 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    Most recent 25 links
+  </h3>
+  <hr class="page_separator" />
+
+  {% for link in links %}
+      {% include "link_short.html" %}
+  {% endfor %}
+{% endblock %}
+

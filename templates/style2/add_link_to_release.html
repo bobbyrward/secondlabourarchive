@@ -1,0 +1,35 @@
+{% extends "style2/base.html" %}
+{% block javascript %}
+$("#release_searchbutton").click(function() {
+  alert("Works");
+});
+{% endblock %}
+
+{% block content %}
+  <h3 id="page_title">
+    Add Link to Release
+  </h3>
+  <hr class="page_separator" />
+    <table>
+      <tr>
+        <td>
+          Link:
+        </td>
+        <td>
+          {{ link.name }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form action="/searchreleases/" method="post" accept-charset="utf-8">
+            <input type="text" id="release_searchterms" name="terms" value="" />
+            <input type="button" id="release_searchbutton" value="Search" />
+          </form>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}
+

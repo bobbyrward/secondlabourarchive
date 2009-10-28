@@ -1,0 +1,14 @@
+New ticket(#{{ ticket.id }}) 
+
+Admin: http://secondlabourarchive.info/admin/archive/troubleticket/{{ ticket.id }}/
+Type: {{ ticket.ticket_type.name }}
+Link: http://secondlabourarchive.info/admin/archive/downloadlink/{{ ticket.link.id }}
+Name: {{ticket.link.name}}
+
+{% if ticket.comment %}
+Comment: 
+{{ ticket.comment }}
+{% endif %}
+
+
+

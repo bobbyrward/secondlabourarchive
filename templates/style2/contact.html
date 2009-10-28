@@ -1,0 +1,30 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    Contact Me
+  </h3>
+  <hr class="page_separator" />
+  <form method="post" action="" accept-charset="utf-8">
+    <table>
+      <tr>
+          <td>Subject:</td> 
+          <td><input type="text" name="subject" id="subject" />
+      </tr>
+      <tr>
+        <td colspan="2">
+          Comment: 
+          <textarea name="comment" id="comment" rows="20" style="width: 100%"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border: none; text-align: center;">
+          <input type="submit" name="submit" value="Send Message" />
+        </td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}
+
+
+

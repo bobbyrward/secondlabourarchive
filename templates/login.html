@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Second Labour Archive</title>
+    <link rel="stylesheet" type="text/css" href="/media/unauth.css" />
+  </head>
+  <body>
+    <div id="login-box">
+      <form method="post" action=".">
+        <table id="login-table">
+          <tr>
+            <td colspan="2" id="title-header">
+              Please Log In
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id_username">Username:</label></td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td><label for="id_password">Password:</label></td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </table>
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+    </div>
+  </body>
+</html>

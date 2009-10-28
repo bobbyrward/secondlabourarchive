@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Second Labour Archive</title>
+    <link rel="stylesheet" type="text/css" href="/media/unauth.css" />
+  </head>
+  <body>
+    <div id="login-box">
+      <form method="post" action="{% if next %}?next={{ next }}{% endif %}">
+        <table id="login-table">
+          <tr>
+            <td colspan="2" id="title-header">
+              {% if form.errors %}
+              <p class="error">Please correct the errors below:</p>
+              {% endif %}
+              Please Log In or <a href="/accounts/register/">register</a>.
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td><label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </table>
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+    </div>
+  </body>
+</html>
+

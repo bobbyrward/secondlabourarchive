@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h3>{{ service.name }}</h3>
+  <p>
+    Showing results {{page.start_index}}-{{page.end_index}} of {{paginator.count}}
+    {% if page.has_other_pages %}
+
+      {% if page.has_previous %}
+      <a href="/service/{{ service.id }}/{{ page.previous_page_number }}/">Prev</a>
+      {% endif %}
+
+      {% if page.has_next %}
+      <a href="/service/{{ service.id }}/{{ page.next_page_number }}/">Next</a>
+      {% endif %}
+
+    {% endif %}
+  </p>
+  {% for link in page.object_list %}
+    {% include "link_short.html" %}
+  {% endfor %}
+
+{% endblock %}
+

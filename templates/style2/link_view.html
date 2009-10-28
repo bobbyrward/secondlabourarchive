@@ -1,0 +1,120 @@
+{% extends "style2/base.html" %}
+
+{% block javascript %}
+  {% if user.is_superuser %}
+    $("#search_thumb_form").submit(function(){ return false; });
+
+    $("#thumb_search_ajax").click(function() {
+      $.getJSON("/json/link/thumbnail/search/", {"terms": $("#thumb_search_terms").val()}, function(data) {
+        if(data.length > 0) {
+          $("#thumb_search_results").empty().show();
+          $.each(data, function(i, item) {
+            img = $("<img/>");
+            img.attr("src", "/media/" + item.fields.thumbnail);
+            img.attr("imgid", item.pk);
+            img.appendTo("#thumb_search_results");
+            img.click(function() {
+              if(confirm("Change the thumbnail?")) {
+                $("#src_link_id").val($(this).attr("imgid"));
+                $("#copy_thumb_form").submit();
+                window.location.reload(true);
+              }
+            });
+          });
+        } else {
+          $("#thumb_search_results").text("No results found").show().fadeOut(3000);;
+        }
+      });
+    });
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if user.is_superuser %}
+    <div class="page_nav_bar">
+      <a href="/admin/archive/downloadlink/{{ link.id }}/">Edit</a>
+    </div>
+  {% endif %}
+  <h3 id="page_title">
+    <a href="{{ link.url }}">
+      {% if link.name %}
+        {{ link.name }}
+      {% else %}
+        {{ link.url }}
+      {% endif %}
+    </a>
+  </h3>
+  <hr class="page_separator" />
+  <table>
+    <tr>
+      <td style="padding: 4px" rowspan="4">
+        <img id="link_thumb" src="{{ link.get_thumbnail_url }}" />
+      </td>
+      <td style="padding: 4px">
+        Date Added:
+      </td>
+      <td style="padding: 4px">
+        {{ link.date_added|date:"F jS, Y h:i" }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 4px">
+        Service:
+      </td>
+      <td style="padding: 4px">
+        <a href="/service/{{link.service.id}}">{{ link.service.name }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 4px">
+        URL:
+      </td>
+      <td style="padding: 4px">
+        <a href="{{link.url}}">{{ link.url }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <a href="/report/{{ link.id }}/">Report a problem with this link</a>
+      </td>
+    </tr>
+    {% if user.is_superuser %}
+      <tr>
+        <td>
+            Change Thumbnail:
+        </td>
+        <td colspan="2">
+          <form action="/link/{{ link.id }}/thumbnail/copy/" id="copy_thumb_form" method="post">
+            <input type="hidden" id="src_link_id" name="src_link_id" />
+          </form>
+          <form action="/link/thumbnail/search/" method="get" id="search_thumb_form" accept-charset="utf-8">
+            <input type="text" name="terms" id="thumb_search_terms" value="{{ sliced }}" />
+            <input type="button" name="search" id="thumb_search_ajax" value="search" />
+          </form>
+          <div id="thumb_search_results">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Change Name:
+        </td>
+        <td colspan="2">
+          <form action="/link/{{ link.id }}/name/change/" id="change_name_form" method="post">
+            <input type="text" name="name" id="link_name" />
+            <input type="submit" id="change_name_button" value="Change" />
+          </form>
+        </td>
+      </tr>
+    {% endif %}
+  </table>
+  <div class="spacer">&nbsp;</div>
+  <hr class="page_separator" />
+  <div class="link_text">
+    {{link.text|safe}}
+  </div>
+
+{% endblock %}
+
+

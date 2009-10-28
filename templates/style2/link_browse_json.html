@@ -1,0 +1,114 @@
+{% extends "style2/base.html" %}
+
+{%block javascript %}
+  fill_results(1);
+{% endblock %}
+
+{% block global_javascript %}
+
+global_page_number = 1;
+
+brief_listings = true;
+
+function fill_results(page_number) {
+  global_page_number = page_number;
+  $(".page_nav_bar").hide();
+  $("#results").empty()
+  $("#throbber").show()
+  $.getJSON("/json/browse/" + page_number+ "/", function(data){
+    $("#throbber").hide()
+    $(".start_index").text(data.start_index);
+    $(".end_index").text(data.end_index);
+    $(".total").text(data.total);
+    $(".page_nav_bar").show();
+
+    if(data.has_next) {
+      $(".next").show().unbind().click(function(){
+        fill_results(data.next_page_number);
+      });
+    } else {
+      $(".next").hide();
+    }
+   
+    if(data.has_previous) {
+      $(".prev").show().unbind().click(function(){
+        fill_results(data.previous_page_number);
+      });
+    } else {
+      $(".prev").hide();
+    }
+
+    for(var i=0; i < data.object_list.length/2; i++) {
+      $("#results").tplAppend({'first': data.object_list[i*2+0], 'second': data.object_list[i*2+1]}, function() {
+        return [ 
+          'tr', {}, [
+            'td', {'rowspan': 2}, [
+              'img', {'src': '/media/' + this.first.fields.thumbnail}, []
+            ],
+            'td', {}, [
+              'a', {'href': '/link/' + this.first.pk}, [
+                'strong', {}, this.first.fields.name 
+              ]
+            ],
+            'td', {'rowspan': 2}, [
+              'img', {'src': '/media/' + this.second.fields.thumbnail}, []
+            ],
+            'td', {}, [
+              'a', {'href': '/link/' + this.second.pk}, [
+                'strong', {}, this.second.fields.name 
+              ]
+            ],
+          ],
+          'tr', {}, [
+            'td', {}, [
+              'a', {'href': this.first.fields.url }, this.first.fields.url 
+            ],
+            'td', {}, [
+              'a', {'href': this.second.fields.url }, this.second.fields.url 
+            ]
+          ]
+        ];
+      });
+    }
+
+  });
+}
+
+
+{% endblock %}
+
+{% block content %}
+  <div class="page_nav_bar" style="display: none;">
+    <strong>Showing results</strong> <span class="start_index"></span> - <span class="end_index"></span> 
+    <strong>of</strong> <span class="total"></span>
+    <br />
+    <input type="button" class="prev" style="display: none" value="Prev" />
+    <input type="button" class="next" style="display: none" value="Next" />
+  </div>
+  <h3 id="page_title">
+    Browse
+  </h3>
+  <div id="page_links">
+  </div>
+  <hr class="page_separator" />
+  <div id="throbber" style="text-align: center">
+    <img src="/media/throbber.gif" alt="Loading..." style="margin-left: auto; margin-right: auto;" />
+  </div>
+  <table>
+    <tbody id="results">
+    </tbody>
+  </table>
+  <hr class="page_separator" />
+  <div class="page_nav_bar" style="display: none;">
+    <strong>Showing results</strong> <span class="start_index"></span> - <span id="end_index"></span> 
+    <strong>of</strong> <span class="total"></span>
+    <br />
+    <input type="button" class="prev" style="display: none" value="Prev" />
+    <input type="button" class="next" style="display: none" value="Next" />
+  </div>
+  <div class="spacer"></div>
+
+{% endblock %}
+
+
+

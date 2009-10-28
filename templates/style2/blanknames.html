@@ -1,0 +1,15 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    BlanksNames
+  </h3>
+  <hr class="page_separator" />
+  <p>
+    {% for link in links %}
+    <a href="/link/{{ link.id }}/">{{ link.url }}</a><br />
+    {% endfor %}
+  </p>
+{% endblock %}
+
+

@@ -1,0 +1,280 @@
+/* Revival.4 */
+/* by: Develop Daly - www.developdaly.com */
+
+/* Structure */
+* {
+   padding:0;
+   margin:0;
+}
+
+html, body {
+	height: 100%;
+}
+body {
+	text-align: left;
+	margin:0 auto;
+	padding:0;
+	color:#000000;
+	font-size:11px;
+	font-family:Verdana, Tahoma, Arial, sans-serif;
+	background:#ffffff;
+}
+#page {
+	width:800px;
+	margin:0 auto;
+}
+#header {
+	height:101px;
+	width:100%;
+	margin: 0 auto;
+	background:#ececec;
+	padding:0px;
+	border-bottom:3px solid #ffffff;
+}
+
+#topbar{
+	width:100%;
+	background:#000000;
+	color:#ffffff;
+	font-weight:600;
+	height:40px;
+	text-align:right;
+}
+
+#topbar p{
+	padding:10px;
+}
+#left{
+	float:left;
+	width:208px;
+	padding:10px 0 10px 0;
+}
+#right{
+	float:right;
+	width:580px;
+	padding:0 0 10px;
+}
+
+/* menu */
+
+ul#menu {
+	padding:0;
+	color:#ffffff;
+	list-style:none;
+	margin:0;
+}
+
+.button a {
+	display: block;
+	overflow: hidden;
+	/*for MacIE*/
+	color:#333333;
+	font-size:12px;
+	font-weight:00;
+	text-align:left;
+	padding:0 0 0 10px;
+	height: 14px;
+	width:195px;
+	text-decoration: none;
+	background:#ececec;
+	border-top:1px dashed #999999;
+	border-left:1px dashed #999999;
+	border-right:1px dashed #999999;
+}
+	
+.button a:hover,.secondary_button a:hover {
+	background:#333333;
+	color:#ffffff;
+}
+
+.secondary{	
+	color:#ffffff;
+	list-style:none;
+	margin:0 0 0 10px;
+}
+
+.secondary_button a {
+	display: block;
+	overflow: hidden;
+	/*for MacIE*/
+	color:#333333;
+	font-size:12px;
+	font-weight:400;
+	text-align:left;
+	padding:0 0 0 10px;
+	height: 14px;
+	width:185px;
+	text-decoration: none;
+	background:#f8f8f8;
+	border-top:1px dashed #999999;
+	border-left:1px dashed #999999;
+	border-right:1px dashed #999999;
+}
+
+a.active{
+	display: block;
+	overflow: hidden;
+	/*for MacIE*/
+	color:#ffffff;
+	font-size:12px;
+	font-weight:600;
+	text-align:left;
+	padding:0 0 0 10px;
+	height: 14px;
+	width:195px;
+	text-decoration: none;
+	background:#000000;
+	border-top:1px dashed #999999;
+	border-left:1px dashed #999999;
+	border-right:1px dashed #999999;
+}
+
+a.active:hover, a.secondary_active:hover {
+	color:#ffffff;
+	background:#333333;
+}
+
+a.secondary_active{
+	display: block;
+	overflow: hidden;
+	/*for MacIE*/
+	color:#ffffff;
+	font-size:12px;
+	font-weight:600;
+	text-align:left;
+	padding:0 0 0 10px;
+	height: 14px;
+	width:185px;
+	text-decoration: none;
+	background:#000000;
+	border-top:1px dashed #999999;
+	border-left:1px dashed #999999;
+	border-right:1px dashed #999999;
+}
+
+/* content */
+
+.box {
+	margin:0;
+	height:100%;
+	border:2px solid #999999;
+	margin:10px 20px 0 30px;
+}
+.box p{
+	padding:5px;
+}
+#content {
+	margin:0;
+	height:100%;
+	padding:0 0 0 0;
+}
+#content p{
+	margin:5px;
+	padding:10px;
+	background:#f8f8f8;
+	border-left:3px solid #ccc;
+	border-bottom:3px solid #ccc;
+}
+
+#content table{
+	margin:5px;
+	padding:10px;
+    width: 98%;
+	background:#f8f8f8;
+	border-left:3px solid #ccc;
+	border-bottom:3px solid #ccc;
+}
+
+#content table td{
+  border: 2px inset #ccc;
+  padding: 4px;
+}
+
+/* headers */
+h1{
+	color:#333333;
+	font-weight:200;
+	font-size:24px;
+	padding: 25px 0 10px 30px;
+}
+
+h2 a{
+	position:absolute;
+	top:80px;
+	color:#333333;
+	font-size:14px;
+	margin:0 0 0 645px;
+	text-decoration:none;
+}
+
+h2 a:hover {
+	color: #999;
+}
+
+h3{
+	color:#333333;
+	font-size:14px;
+	margin:20px 0 0 0;
+	background:#ececec;
+	border-bottom:3px solid #999999;
+}
+
+h4{
+	color:#666666;
+	font-size:12px;
+	margin:20px 0 0 10px;
+}
+
+
+h5{
+	color:#999999;
+	font-size:11px;
+	margin:20px 0 0 20px;
+}
+
+h6{
+	color:#333333;
+	font-size:10px;
+	margin:20px 0 0 30px;
+	font-style:italic;
+}
+
+/* footer */
+
+#footer{
+	clear:both;
+	margin:10px auto 0 auto;
+	width:100%;
+	padding:5px;
+	text-align:center;
+	background:#cccccc;
+	border-top:#333333 solid 3px;
+}
+
+#footer a {
+	color:#000000;
+}
+
+#footer a:hover {
+	color:#666666;
+}
+
+/* misc */
+a{
+	color:#000000;
+}
+a:hover {
+	color:#666666;
+}
+.left{
+	float:left;
+}
+
+.right{
+	float:right;
+}
+
+img{
+	border:#999999 solid 2px;
+	margin:5px;
+}

@@ -1,0 +1,14 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3 id="page_title">
+    BlanksNames
+  </h3>
+
+  <p>
+    {% for link in links %}
+    <a href="http://localhost/admin/archive/downloadlink/{{ link.id }}/">{{ link.url }}</a><br />
+    {% endfor %}
+  </p>
+{% endblock %}
+

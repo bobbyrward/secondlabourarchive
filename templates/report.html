@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Report a Link</h3>
+  <form method="get" action="" accept-charset="utf-8">
+    <table>
+      <tr>
+        <td>Link:</td> <td> {{ link.name }} </td>
+      </tr>
+      <tr>
+        <td>Type:</td>
+        <td>
+          <select name="type" style="width: 100%">
+            {% for type in ticket_types %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Comment: 
+          <textarea name="comment" rows="20" style="width: 100%"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border: none; text-align: center;">
+          <input type="submit" name="submit" value="Report" />
+        </td>
+      </tr>
+    </table>
+  </p>
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends "style2/base.html" %}
+
+{% block content %}
+  <h3>
+    <a href="{{ link.url }}">
+      {% if link.name %}
+        {{ link.name }}
+      {% else %}
+        {{ link.url }}
+      {% endif %}
+    </a>
+  </h3>
+  <table>
+    <tr>
+      <td style="padding: 4px">
+        Date Added:
+      </td>
+      <td style="padding: 4px">
+        {{ link.date_added|date:"F jS, Y h:i" }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 4px">
+        Service:
+      </td>
+      <td style="padding: 4px">
+        <a href="/service/{{link.service.id}}">{{ link.service.name }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 4px">
+        URL:
+      </td>
+      <td style="padding: 4px">
+        <a href="{{link.url}}">{{ link.url }}</a>
+      </td>
+    </tr>
+    {% if link.thumbnail_url %}
+    <tr>
+      <td style="padding: 4px">
+        Thumbnail:
+      </td>
+      <td style="padding: 4px">
+        {{link.thumbail_url}} 
+      </td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td colspan="2">
+        {{link.text|safe}}
+      </td>
+    </tr>
+    {% if user.is_superuser %}
+    <tr>
+      <td colspan="2">
+        <a href="http://localhost/admin/archive/downloadlink/{{ link.id }}/">Edit</a>
+      </td>
+    </tr>
+    {% endif %}
+  </table>
+
+{% endblock %}
+

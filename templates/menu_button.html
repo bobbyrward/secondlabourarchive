@@ -1,0 +1,10 @@
+
+{% ifequal current_path button_path %}
+
+    <a href="{{ button_path }}" class="active">&#187; {{ button_label }}</a>
+
+{% else %}
+
+    <a href="{{ button_path }}">&#187; {{ button_label }}</a>
+
+{% endifequal %}

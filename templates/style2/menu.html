@@ -1,0 +1,76 @@
+<script type="text/javascript">
+  $(document).ready(function() { 
+    $("ul#menu>li>a[@href*={{ current_path }}]").addClass("active_button");
+    $("ul#menu>li>ul#submenu>li>a[@href={{ current_path }}]").addClass("active_sub_button");
+  });
+</script>
+<div id="sidebar" class="corner1">
+  <ul id="menu">
+    <li class="menu_button">
+      <a class="menu_button_link" href="/" title="Home">Home</a>
+      <ul id="submenu">
+        <li class="menu_sub_button">
+          <a href="/profile/" title="Profile">&#187; Profile</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/accounts/logout/" title="Log Out">&#187; Log Out</a>
+        </li>
+      </ul>
+    </li>
+    <li class="menu_button">
+      <a href="/browse/" title="Browse">Browse</a>
+    </li>
+    <li class="menu_button">
+      <a href="/browse2/" title="Experimental Browse">Experimental<br />Browse</a>
+    </li>
+    <li class="menu_button">
+      <a href="/search/" title="Search">Search</a>
+    </li>
+    <li class="menu_button">
+      <a title="Date" style="cursor: default;">Date</a> 
+      <ul id="submenu">
+        {% for topic in topics %}
+            <li class="menu_sub_button">
+              <a href="/topic/{{ topic.id }}/" title="{{ topic.date|date:"d/m/y" }}">&#187; {{ topic.date|date:"d/m/y" }}</a>
+            </li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li class="menu_button">
+      <a href="/service/" title="Services">Services</a>
+      <ul id="submenu">
+        <li class="menu_sub_button">
+          <a href="/service/1/" title="MediaFire">&#187; MediaFire</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/2/" title="Rapidshare">&#187; Rapidshare</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/3/" title="zSHARE">&#187; zSHARE</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/4/" title="GigaSize">&#187; GigaSize</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/5/" title="sendshare">&#187; sendshare</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/6/" title="MEGAUPLOAD">&#187; MEGAUPLOAD</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/7/" title="AxiFile">&#187; AxiFile</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/9/" title="FileDucky">&#187; FileDucky</a>
+        </li>
+        <li class="menu_sub_button">
+          <a href="/service/99/" title="Unknown">&#187; Unknown</a>
+        </li>
+      </ul>
+    </li>
+    <li class="menu_button">
+      <a href="/contact/" title="Contact">Contact</a>
+    </li>
+  </ul>
+</div>
+

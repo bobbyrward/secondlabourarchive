@@ -1,0 +1,44 @@
+<h4>
+  {% if link.name %}
+    <a href="/link/{{ link.id }}/">{{ link.name }}</a><br />
+  {% else %}
+    <a href="/link/{{ link.id }}/">{{ link.url }}</a><br />
+  {% endif %}
+</h4>
+  <table class="link_table">
+    <tr>
+      <td rowspan="4">
+        {% if link.thumbnail %}
+          <a href="/link/{{ link.id }}/">
+            <img src="{{ link.get_thumbnail_url }}" class="thumbnail" />
+          </a>
+        {% else %}
+          &nbsp;
+        {% endif %}
+      </td>
+      <td>
+        <a href="{{ link.url }}" title="Download">
+            Download Link
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          Service: <a href="/service/{{ link.service.id }}">{{ link.service.name }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ link.date_added|date:"F jS, Y h:i" }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/report/{{ link.id }}/" title="Report">
+          Report a problem with this link
+        </a>
+      </td>
+    </tr>
+  </table>
+  <hr class="page_separator" />
+

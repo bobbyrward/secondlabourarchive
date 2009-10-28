@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <title>Second Labour Archive</title>
+    <link rel="stylesheet" type="text/css" href="/media/unauth.css" />
+    <script type="text/javascript" src="/media/jquery.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() { 
+        $("#registration_form").submit(function(){
+          var s = $("#id_email").val().toLowerCase();
+          if(-1 != s.indexOf("hotmail.com")) {
+            $("#email_message").text("Unfortunately, hotmail email addresses are not supported at this time").show();
+            return false;
+          }
+          return true;
+        });
+      });
+    </script>
+  </head>
+  <style type="text/css">
+    .error {
+      color: red;
+    }
+  </style>
+  <body style="text-align: center">
+    <form method="post" action="" id="registration_form">
+
+  <h3>Register</h3>
+
+{% if form.has_errors %}
+<p class="error">Please correct the errors below:</p>
+{% endif %}
+
+
+<p class="error" id="email_message" style="display: none;">
+</p>
+
+<table style="margin-left: auto; margin-right: auto;">
+  <tr>
+    <td>
+      <label for="id_username">Username:</label>
+    </td>
+    <td>
+      {{ form.username }}
+    <td>
+    </td>
+    <td>
+      {% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="id_email">Email Address:</label>
+    </td>
+    <td>
+      {{ form.email }}
+    <td>
+    </td>
+    <td>
+      {% if form.email.errors %} <span class="error">{{ form.email.errors|join:", " }}</span>{% endif %}
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <label for="id_password1">Password:</label>
+    </td>
+    <td>
+      {{ form.password1 }}
+    <td>
+    </td>
+    <td>
+      {% if form.password1.errors %} <span class="error">{{ form.password1.errors|join:", " }}</span>{% endif %}
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <label for="id_password2">Retype Password:</label>
+    </td>
+    <td>
+      {{ form.password2 }}
+    <td>
+    </td>
+    <td>
+      {% if form.password2.errors %} <span class="error">{{ form.password2.errors|join:", " }}</span>{% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td style="text-align: center"><input type="submit" value="Register" /></td>
+</table>
+</form>
+    </div>
+  </body>
+</html>
+
+

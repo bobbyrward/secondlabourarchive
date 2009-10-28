@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Most recent 25 links</h3>
+
+    {% for link in links %}
+        {% include "link_short.html" %}
+    {% endfor %}
+
+{% endblock %}
+
